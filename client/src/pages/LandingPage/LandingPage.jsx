@@ -7,14 +7,22 @@ import ai1 from "../../assets/ai1.jpg";
 import Modal from "../../components/loader/Modal";
 import Login from "../auth/Login";
 import Signup from "../auth/Signup";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 
 const LandingPage = () => {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {
-    setOpenAuthModal(true);
+
+    if(user){
+      setOpenAuthModal(true);
+    }else{
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -35,12 +43,12 @@ const LandingPage = () => {
               IntelliMock
             </div>
 
-            <button
+             { user ? (<ProfileInfoCard/>) :  (<button
               className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-8 py-3 rounded-full hover:shadow-md hover:shadow-amber-200/50 transition-all duration-300 cursor-pointer"
               onClick={() => setOpenAuthModal(true)}
             >
               Login/Signup
-            </button>
+            </button>)}
           </header>
 
           {/* Hero Content */}
