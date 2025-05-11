@@ -56,7 +56,7 @@ const loginUser = async (req, res) => {
         if(!isMatch) {
             return res.status(400).json({message: "Invalid email or password"});
         }
-        res.status(200).json({
+        res.json({
             _id: user._id,
             name: user.name,
             email: user.email,
@@ -72,7 +72,19 @@ const loginUser = async (req, res) => {
 //@desc Get user profile
 //@route GET /api/auth/profile
 //@access Private
-const getUserProfile = async (req, res) => {};  
+const getUserProfile = async (req, res) => {
+    try{
+        const user = await User.findById(req.user.id).select("-password");
+        if(!user) {
+            return res.status(404).json({message: "User not found"});
+        }
+        res.json(user);
+        
+    }
+    catch(error) {
+        res.status(500).json({message: "Internal server error", error: error.message});
+    }
+};  
 
 module.exports = {
     registerUser,
