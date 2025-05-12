@@ -55,10 +55,7 @@ IntelliMock is a professional-grade interview preparation platform designed to h
 
 - Node.js (v16 or higher)
 - MongoDB (v5 or higher)
-- Redis (v6 or higher)
 - Google Cloud API key
-- AWS Account (for S3)
-- Docker (optional)
 
 ## Installation
 
@@ -83,13 +80,9 @@ npm install
 ```env
 PORT=8000
 MONGO_URI=your_mongodb_connection_string
-REDIS_URL=your_redis_connection_string
 JWT_SECRET=your_jwt_secret
 JWT_REFRESH_SECRET=your_refresh_token_secret
 GOOGLE_API_KEY=your_google_api_key
-AWS_ACCESS_KEY=your_aws_access_key
-AWS_SECRET_KEY=your_aws_secret_key
-AWS_BUCKET_NAME=your_s3_bucket_name
 ```
 
 4. Create a `.env` file in the client directory:
@@ -182,19 +175,3 @@ intellimock/
 - TypeScript strict mode enabled
 - Documentation required for new APIs
 - Performance benchmarks for critical features
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-For enterprise support, email enterprise@intellimock.com
-For technical issues, create an issue in the repository
-
-## Acknowledgments
-
-- Google's Generative AI for powering the interview questions
-- MongoDB for database services
-- AWS for cloud infrastructure
-- All contributors who have helped shape this project 
