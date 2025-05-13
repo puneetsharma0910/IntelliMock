@@ -36,6 +36,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
+import { LuUser } from "react-icons/lu";
 
 const ProfileInfoCard = () => {
   const { user, clearUser } = useContext(UserContext);
@@ -48,14 +49,20 @@ const ProfileInfoCard = () => {
   };
 
   return (
-    <div className="flex items-center gap-2 py-1 px-3 border border-gray-200 rounded-full shadow-sm hover:shadow-md transition-shadow bg-white">
-      <img
-        width={32}
-        height={32}
-        className="rounded-full object-cover border-2 border-amber-500"
-        src={user.profileImageUrl}
-        alt={`${user.name || 'User'}'s profile`}
-      />
+   user &&  <div className="flex items-center gap-2 py-1 px-3 border border-gray-200 rounded-full shadow-sm hover:shadow-md transition-shadow bg-white">
+      {user.profileImageUrl ? (
+        <img
+          width={32}
+          height={32}
+          className="rounded-full object-cover border-2 border-amber-500"
+          src={user.profileImageUrl}
+          alt={`${user.name || 'User'}'s profile`}
+        />
+      ) : (
+        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center border-2 border-amber-500">
+          <LuUser size={16} className="text-amber-600" />
+        </div>
+      )}
       <div className="flex flex-col">
         <div className="text-sm font-medium">
           {user.name || ""}

@@ -7,7 +7,7 @@ const Question = require("../models/Question");
 
 exports.createSession = async (req, res) => {
     try{
-        const {role, experience, topicsToFocus, description, questions} = req.body;
+        const {role, experience, topicsToFocus, description, questions = []} = req.body;
         
         const userId = req.user.id;
         const session = await Session.create({
@@ -17,21 +17,26 @@ exports.createSession = async (req, res) => {
             topicsToFocus,
             description,
         });
-        const questionsDocs = await Promise.all(questions.map(async (q) => {
-          const question = await Question.create({
-            question: q.question,
-            session: session._id,
-            answer: q.answer,
-          });
-          return question._id;
-        }));
-        session.questions = questionsDocs;
-        await session.save();
+
+        if (questions && questions.length > 0) {
+            const questionsDocs = await Promise.all(questions.map(async (q) => {
+                const question = await Question.create({
+                    question: q.question,
+                    session: session._id,
+                    answer: q.answer,
+                });
+                return question._id;
+            }));
+            session.questions = questionsDocs;
+            await session.save();
+        }
+
         res.status(201).json({session, success: true});
         
     }
     catch(error) {
-        res.status(500).json({message: "Internal server error", success: false});
+        console.error("Error creating session:", error);
+        res.status(500).json({message: "Internal server error", success: false, error: error.message});
     }
 };
 
