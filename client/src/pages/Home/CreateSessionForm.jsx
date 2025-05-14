@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import SpinnerLoader from "../../components/loader/SpinnerLoader";
 
 const CreateSessionForm = ({ onSuccess }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     role: "",
     topicsToFocus: "",
@@ -31,21 +32,34 @@ const CreateSessionForm = ({ onSuccess }) => {
       return;
     }
     setError("");
-    
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const sessionData = {
-        ...formData,
-        experience: formData.experience.toString()
-      };
-      await axiosInstance.post(API_PATHS.SESSION.CREATE_SESSION, sessionData);
-      toast.success('Session created successfully!');
-      onSuccess?.();
+        //call api to generate questions
+        const aiResponse = await axiosInstance.post(
+            API_PATHS.AI.GENERATE_QUESTIONS,
+            {
+                role,
+                topicsToFocus,
+                experience,
+                numberOfQuestions: 10,
+            }
+        );
+        const generatedQuestions = aiResponse.data;
+        const response = await axiosInstance.post(API_PATHS.SESSION.CREATE_SESSION, {
+            ...formData,
+            questions: generatedQuestions,
+        });
+        if(response.data?.session?._id) {
+            navigate(`/interview-prep/${response.data?.session?._id}`);
+        }
     } catch (error) {
-      console.error('Error creating session:', error);
-      toast.error(error.response?.data?.message || 'Failed to create session');
+        if(error.response && error.response.data.message) {
+            setError(error.response.data.message);
+        } else {
+            setError("An unexpected error occurred. Please try again later.");
+        }
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
   };
 
@@ -99,7 +113,7 @@ const CreateSessionForm = ({ onSuccess }) => {
           disabled={isLoading}
           className="btn-primary w-full mt-2"
         >
-          {!isLoading && <SpinnerLoader/>} Create Session
+          {isLoading ? <SpinnerLoader/> : "Create Session"}
         </button>
       </form>
     </div>
