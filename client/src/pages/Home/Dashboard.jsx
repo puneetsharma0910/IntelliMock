@@ -139,8 +139,12 @@ const Dashboard = () => {
         onClose={() => setOpenCreateModal(false)} 
         title="Create New Session"
       >
-        <CreateSessionForm
-        />
+        <div>
+
+      
+        <CreateSessionForm/>
+          </div>
+        
       </Modal>
     </DashboardLayout>
   )

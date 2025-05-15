@@ -43,7 +43,7 @@ const ProfileInfoCard = () => {
   const navigate = useNavigate();
   
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear("token");
     clearUser();
     navigate("/");
   };

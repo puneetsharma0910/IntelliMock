@@ -7,7 +7,7 @@ const Question = require("../models/Question");
 
 exports.createSession = async (req, res) => {
     try{
-        const {role, experience, topicsToFocus, description, questions = []} = req.body;
+        const {role, experience, topicsToFocus, description, questions } = req.body;
         
         const userId = req.user.id;
         const session = await Session.create({
@@ -18,7 +18,7 @@ exports.createSession = async (req, res) => {
             description,
         });
 
-        if (questions && questions.length > 0) {
+       
             const questionsDocs = await Promise.all(questions.map(async (q) => {
                 const question = await Question.create({
                     question: q.question,
@@ -29,7 +29,7 @@ exports.createSession = async (req, res) => {
             }));
             session.questions = questionsDocs;
             await session.save();
-        }
+        
 
         res.status(201).json({session, success: true});
         
@@ -96,7 +96,7 @@ exports.deleteSession = async (req, res) => {
         res.status(200).json({message: "Session deleted successfully"});
     }
     catch(error) {
-        
+        res.status(500).json({message: " server error", success: false});
     }
 };
 
