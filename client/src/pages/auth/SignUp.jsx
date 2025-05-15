@@ -16,56 +16,58 @@ const Signup = ({ setCurrentPage }) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const {updateUser} = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    
+
     try {
-      // Validate inputs
-      if(!fullName){
+      if (!fullName) {
         setError("Full name is required");
+        setIsLoading(false);
         return;
       }
-      if(!validateEmail(email)){
+      if (!validateEmail(email)) {
         setError("Invalid email format");
+        setIsLoading(false);
         return;
       }
-      if(!password){
+      if (!password) {
         setError("Password is required");
+        setIsLoading(false);
         return;
       }
-      if(password.length < 6) {
+      if (password.length < 6) {
         setError("Password must be at least 6 characters long");
+        setIsLoading(false);
         return;
       }
 
       let profileImageUrl = "";
-      
-      // Handle profile image upload
-      if(profilePic){
+
+      if (profilePic) {
         try {
           const imgUploadRes = await uploadImage(profilePic);
           profileImageUrl = imgUploadRes.imageUrl || "";
         } catch (uploadError) {
           console.error("Image upload error:", uploadError);
           setError("Failed to upload profile image. Please try again.");
+          setIsLoading(false);
           return;
         }
       }
 
-      // Attempt registration
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,
         email,
         password,
-        profileImageUrl
+        profileImageUrl,
       });
 
-      const {token} = response.data;
-      if(token){
+      const { token } = response.data;
+      if (token) {
         localStorage.setItem("token", token);
         updateUser(response.data);
         navigate("/dashboard");
@@ -74,10 +76,8 @@ const Signup = ({ setCurrentPage }) => {
       }
     } catch (error) {
       console.error("Signup error:", error);
-      
+
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         if (error.response.status === 409) {
           setError("An account with this email already exists");
         } else if (error.response.status === 400) {
@@ -88,10 +88,10 @@ const Signup = ({ setCurrentPage }) => {
           setError(`Server error: ${error.response.status}`);
         }
       } else if (error.request) {
-        // The request was made but no response was received
-        setError("No response from server. Please check your internet connection.");
+        setError(
+          "No response from server. Please check your internet connection."
+        );
       } else {
-        // Something happened in setting up the request that triggered an Error
         setError("Failed to connect to the server. Please try again later.");
       }
     } finally {
@@ -100,19 +100,23 @@ const Signup = ({ setCurrentPage }) => {
   };
 
   return (
-    <>
-      <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center ">
-        <h3 className="text-2xl font-semibold text-black">Create an account</h3>
-        <p className="text-sm text-slate-700 mt-[5px] mb-6">Join IntelliMock to create your account</p>
-        <form onSubmit={handleSignup}>
-          <ProfilePhotoSelector  image={profilePic} setImage={setProfilePic}/>
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+    <div className="w-full max-w-md mx-auto p-8 bg-amber-50 rounded-lg shadow-md">
+      <h3 className="text-3xl font-extrabold text-amber-900 mb-2 text-center">
+        Create an account
+      </h3>
+      <p className="text-sm text-amber-700 mb-6 text-center">
+        Join IntelliMock to create your account
+      </p>
+      <form onSubmit={handleSignup} className="space-y-5">
+        <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
+        <div className="grid gap-4">
           <Input
             label="Full Name"
             placeholder="Enter your full name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             type="text"
+            className="rounded-md border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500"
           />
           <Input
             label="Email"
@@ -120,6 +124,7 @@ const Signup = ({ setCurrentPage }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
+            className="rounded-md border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500"
           />
           <Input
             label="Password"
@@ -127,28 +132,32 @@ const Signup = ({ setCurrentPage }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
+            className="rounded-md border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500"
           />
-          </div>
-          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-          <button 
-            type="submit" 
-            className={`btn-primary ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={isLoading}
-          >
-            {isLoading ? 'Signing up...' : 'Sign up'}
-          </button>
-          <p className="text-[13px] text-slate-800 mt-2">
-            Already have an account?{" "}
-            <button
-              className="text-primary font-medium underline cursor-pointer"
-              onClick={() => setCurrentPage("login")}
-            >
-              Login
-            </button>
-          </p>
-        </form>
-      </div>
-    </>
+        </div>
+        {error && (
+          <p className="text-red-600 text-sm font-medium text-center">{error}</p>
+        )}
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-1 ${
+            isLoading ? "opacity-60 cursor-not-allowed" : ""
+          }`}
+        >
+          {isLoading ? "Signing up..." : "Sign up"}
+        </button>
+      </form>
+      <p className="mt-6 text-center text-amber-900 text-sm">
+        Already have an account?{" "}
+        <button
+          className="text-amber-600 font-medium underline hover:text-amber-700 cursor-pointer"
+          onClick={() => setCurrentPage("login")}
+        >
+          Login
+        </button>
+      </p>
+    </div>
   );
 };
 
