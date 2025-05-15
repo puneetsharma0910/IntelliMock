@@ -1,4 +1,4 @@
-# IntelliMock - Enterprise-Grade Interview Preparation Platform
+# IntelliMock - Interview Preparation Platform
 
 IntelliMock is a professional-grade interview preparation platform designed to help software engineers prepare for top tech companies like Google, Microsoft, and other FAANG+ companies. Our platform provides a comprehensive suite of tools to master technical interviews through AI-powered mock interviews, real-time feedback, and industry-standard evaluation criteria.
 
