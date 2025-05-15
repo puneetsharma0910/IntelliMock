@@ -34,7 +34,19 @@ const InterviewPrep = () => {
 
   const generateConceptExplanation = async (question) => {};
 
-  const toggleQuestionPinStatus = async (questionId) => {};
+  const toggleQuestionPinStatus = async (questionId) => {
+    try {
+      const response = await axiosInstance.post(
+        API_PATHS.QUESTION.PIN( questionId)
+      );
+      console.log(response);
+      if (response.data && response.data.question) {
+        fetchSessionDetailsById();
+      }
+    } catch (error) {
+      console.log("Error in toggleQuestionPinStatus", error);
+    }
+  };
 
   const uploadMoreQuestions = async () => {};
 
@@ -76,8 +88,10 @@ const InterviewPrep = () => {
                   <motion.div
                     key={data._id || index}
                     initial={{ opacity: 0, y: -20 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   exit={{opacity:0,scale:0.95}}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{opacity:0, scale:0.95}}
+
+
                     transition={{
                       duration: 0.4,
                       type: "spring",
