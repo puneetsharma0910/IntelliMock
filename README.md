@@ -1,6 +1,6 @@
-# IntelliMock – AI-Powered Interview Preparation Platform
+# IntelliMock – AI-Powered Technical Interview Preparation Platform
 
-IntelliMock is a professional-grade platform designed to help you **crack Microsoft SDE (entry-level)** and other top tech interviews. It leverages AI to generate technical interview questions, detailed answers, and concept explanations, simulating real interview scenarios with analytics and session management.
+IntelliMock is a professional-grade platform designed to help you prepare for entry-level software engineering interviews at top tech companies. It leverages AI to generate technical interview questions, detailed answers, and concept explanations, simulating real interview scenarios with analytics and session management.
 
 ---
 
@@ -24,27 +24,11 @@ IntelliMock is a professional-grade platform designed to help you **crack Micros
 
 ---
 
-<<<<<<< HEAD
 ## 🏗️ Tech Stack
 
 - **Frontend**: React, Tailwind CSS, Vite, React Router, Axios, React Hot Toast, Framer Motion, React Markdown, Syntax Highlighting.
 - **Backend**: Node.js, Express, MongoDB (Mongoose), JWT, Multer (file upload), Google Gemini AI API.
 - **Dev Tools**: ESLint, Nodemon, dotenv.
-=======
-### Frontend
-- React.js with Javascript
-- Tailwind CSS for enterprise-grade UI
-- Redux Toolkit for state management
-- React Router for navigation
-- Jest and React Testing Library for testing
-- ESLint and Prettier for code quality
-
-### Backend
-- Node.js with Express.js
-- MongoDB 
-- JWT Authentication with refresh tokens
-- Google's Generative AI API
->>>>>>> 6529428f94e4a1b316f7298c8a2c631a70c364b3
 
 ---
 
@@ -219,7 +203,6 @@ npm run dev
 
 ---
 
-
 ## 🤝 Contributing
 
 1. Fork this repo
@@ -234,4 +217,7 @@ npm run dev
 
 - Open an issue on GitHub
 - Email: your.email@example.com
-*
+
+---
+
+**Use IntelliMock to simulate real technical interviews, strengthen your fundamentals, and track your progress as you prepare for your dream software engineering role!**
