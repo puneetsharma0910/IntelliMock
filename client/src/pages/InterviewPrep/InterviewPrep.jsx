@@ -30,11 +30,6 @@ const InterviewPrep = () => {
         API_PATHS.SESSION.GET_ONE(sessionId)
       );
       if (response.data?.session) {
-        console.log(
-          "✅ Updated questions fetched:",
-          response.data.session.questions
-        );
-        // Force new object to trigger re-render
         setSessionData({ ...response.data.session });
       }
     } catch (error) {
@@ -80,7 +75,6 @@ const InterviewPrep = () => {
       );
 
       const generatedQuestions = aiResponse.data;
-      console.log("🧠 Generated Questions:", generatedQuestions);
 
       const response = await axiosInstance.post(
         API_PATHS.QUESTION.ADD_TO_SESSION,
@@ -123,8 +117,6 @@ const InterviewPrep = () => {
     if (sessionId) fetchSessionDetailsById();
   }, [sessionId]);
 
-  // Only updated styles: tailwind classes & layout improvements
-
   return (
     <DashboardLayout>
       <RoleInfoHeader
@@ -140,13 +132,13 @@ const InterviewPrep = () => {
         }
       />
 
-      <div className="container mx-auto px-4 md:px-6 pt-6 pb-10">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray mb-6">
+      <main className="container mx-auto px-4 md:px-6 pt-6 pb-10">
+        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-500 mb-8">
           Interview Q&A
         </h2>
 
-        <div className="grid grid-cols-12 gap-6">
-          <div
+        <div className="grid grid-cols-12 gap-8">
+          <section
             className={`col-span-12 ${
               openLeanMoreDrawer ? "md:col-span-7" : "md:col-span-8"
             }`}
@@ -168,7 +160,7 @@ const InterviewPrep = () => {
                     }}
                     layout
                     layoutId={`question-${data._id || index}`}
-                    className="mb-6"
+                    className="mb-8"
                   >
                     <QuestionCard
                       question={data?.question}
@@ -180,13 +172,14 @@ const InterviewPrep = () => {
                       onTogglePin={() => toggleQuestionPinStatus(data._id)}
                     />
 
+                    {/* Load More Button below last question */}
                     {!isLoading &&
-                      sessionData?.questions?.length == index + 1 && (
+                      sessionData?.questions?.length === index + 1 && (
                         <div className="flex justify-center mt-6">
                           <button
                             disabled={isLoading || isUpdateLoader}
                             onClick={uploadMoreQuestions}
-                            className="flex items-center gap-2 text-sm font-medium bg-black text-white hover:bg-gray-900 px-6 py-2.5 rounded-lg shadow-md disabled:opacity-50 transition duration-200"
+                            className="inline-flex items-center gap-2 rounded-lg bg-black px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-colors duration-200 hover:bg-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
                           >
                             {isUpdateLoader ? (
                               <SpinnerLoader />
@@ -201,13 +194,13 @@ const InterviewPrep = () => {
                 ))}
               </AnimatePresence>
             ) : (
-              <div className="text-center py-16">
-                <p className="text-gray-500 dark:text-gray-300 text-base">
+              <div className="flex justify-center py-20">
+                <p className="text-center text-gray-500 dark:text-gray-400 text-lg">
                   No questions found for this session.
                 </p>
               </div>
             )}
-          </div>
+          </section>
         </div>
 
         {/* Drawer */}
@@ -217,8 +210,9 @@ const InterviewPrep = () => {
           title={!isLoading && explanation?.title}
         >
           {errorMsg && (
-            <p className="text-red-500 flex gap-2 items-start font-medium text-sm mb-4">
-              <LuCircleAlert className="mt-1" /> {errorMsg}
+            <p className="mb-4 flex items-start gap-2 text-sm font-medium text-red-600">
+              <LuCircleAlert className="mt-1 text-red-600" />
+              {errorMsg}
             </p>
           )}
           {isLoading && <SkeletonLoader />}
@@ -226,8 +220,9 @@ const InterviewPrep = () => {
             <AIResponsePreview content={explanation?.explanation} />
           )}
         </Drawer>
-      </div>
+      </main>
     </DashboardLayout>
   );
 };
+
 export default InterviewPrep;

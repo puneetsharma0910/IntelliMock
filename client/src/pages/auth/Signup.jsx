@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/inputs/Input";
@@ -92,7 +93,7 @@ const Signup = ({ setCurrentPage }) => {
           "No response from server. Please check your internet connection."
         );
       } else {
-        setError("Failed to  connect to the server. Please try again later.");
+        setError("Failed to connect to the server. Please try again later.");
       }
     } finally {
       setIsLoading(false);
@@ -100,23 +101,23 @@ const Signup = ({ setCurrentPage }) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-8 bg-amber-50 rounded-lg shadow-md">
-      <h3 className="text-3xl font-extrabold text-amber-900 mb-2 text-center">
+    <div className="w-[95vw] max-w-[400px] md:w-[35vw] p-4 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg flex flex-col justify-center border border-amber-100/50 glass-card animate-fade-in">
+      <h3 className="text-2xl font-bold mb-1 text-center animate-text-shine bg-gradient-to-r from-[#FF9324] via-[#e99a4b] to-[#FF9324] bg-clip-text text-transparent">
         Create an account
       </h3>
-      <p className="text-sm text-amber-600 mb-6 text-center">
+      <p className="text-xs text-amber-600 mb-3 text-center">
         Join IntelliMock to create your account
       </p>
-      <form onSubmit={handleSignup} className="space-y-5">
+      <form onSubmit={handleSignup} className="space-y-3">
         <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
-        <div className="grid gap-4">
+        <div className="grid gap-2">
           <Input
             label="Full Name"
             placeholder="Enter your full name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             type="text"
-            className="rounded-md border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500"
+            className="rounded-md border border-amber-300 focus:ring-1 focus:ring-amber-400 focus:border-amber-500 text-lg"
           />
           <Input
             label="Email"
@@ -124,7 +125,7 @@ const Signup = ({ setCurrentPage }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            className="rounded-md border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500"
+            className="rounded-md border border-amber-300 focus:ring-1 focus:ring-amber-400 focus:border-amber-500 text-lg"
           />
           <Input
             label="Password"
@@ -132,25 +133,27 @@ const Signup = ({ setCurrentPage }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            className="rounded-md border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500"
+            className="rounded-md border border-amber-300 focus:ring-1 focus:ring-amber-400 focus:border-amber-500 text-lg"
           />
         </div>
         {error && (
-          <p className="text-red-600 text-sm font-medium text-center">
+          <p className="text-red-600 text-xs font-medium text-center">
             {error}
           </p>
         )}
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-1 ${
-            isLoading ? "opacity-60 cursor-not-allowed" : ""
+          className={`w-full py-2 rounded-full text-white font-semibold text-sm transition duration-300 cta-glow ${
+            isLoading
+              ? "bg-amber-500/70 cursor-not-allowed"
+              : "bg-gradient-to-r from-[#FF9324] to-[#e99a4b] hover:scale-105"
           }`}
         >
           {isLoading ? "Signing up..." : "Sign up"}
         </button>
       </form>
-      <p className="mt-6 text-center text-amber-900 text-sm">
+      <p className="mt-4 text-center text-amber-900 text-xs">
         Already have an account?{" "}
         <button
           className="text-amber-600 font-medium underline hover:text-amber-700 cursor-pointer"
@@ -159,7 +162,6 @@ const Signup = ({ setCurrentPage }) => {
           Login
         </button>
       </p>
-      console.log("hi");
     </div>
   );
 };

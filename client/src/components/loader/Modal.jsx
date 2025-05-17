@@ -4,21 +4,22 @@ const Modal = ({ isOpen, onClose, title, children, hideHeader }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black/40">
-      <div className="relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden max-w-2xl w-full mx-4">
+      <div className="relative flex flex-col justify-center items-center bg-white shadow-2xl rounded-xl overflow-visible max-w-lg w-full mx-4 min-h-[160px] py-4 px-3 sm:px-4">
         {/* modal header */}
         {!hideHeader && (
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h3 className="md:text-lg font-medium text-gray-800">{title}</h3>
+          <div className="flex items-center justify-between p-3 border-b border-gray-200 w-full">
+            <h3 className="md:text-base font-medium text-gray-800">{title}</h3>
           </div>
         )}
 
         <button 
           type="button" 
-          className="text-gray-600 bg-gray-100 hover:bg-orange-100 hover:text-gray-800 rounded-lg text-sm p-2 inline-flex items-center justify-center absolute top-3.5 right-3.5 cursor-pointer shadow-sm"
+          className="text-gray-600 bg-gray-100 hover:bg-orange-100 hover:text-gray-800 rounded-lg text-xs p-1.5 inline-flex items-center justify-center absolute top-3 right-3 cursor-pointer shadow-sm"
           onClick={onClose}
+          aria-label="Close modal"
         >
           <svg
-            className="w-4 h-4"
+            className="w-3.5 h-3.5"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -34,8 +35,8 @@ const Modal = ({ isOpen, onClose, title, children, hideHeader }) => {
           </svg>
         </button>
 
-        {/* modal body scrollable */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar">
+        {/* modal body scrollable and centered */}
+        <div className="flex-1 flex items-center justify-center w-full overflow-y-auto custom-scrollbar py-3">
           {children}
         </div>
       </div>

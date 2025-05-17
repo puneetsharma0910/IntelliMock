@@ -122,8 +122,6 @@
 
 // export default CreateSessionForm;
 
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/inputs/Input";
@@ -192,14 +190,14 @@ const CreateSessionForm = ({ onSuccess }) => {
   };
 
   return (
-    <div className="w-[90vw] md:w-[35vw] p-8 rounded-2xl shadow-lg bg-white">
-      <h3 className="text-2xl font-bold text-gray-900 mb-1.5">
+    <div className="w-[90vw] md:w-[30vw] p-6 rounded-2xl shadow-md bg-white">
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">
         Start a New Interview Journey
       </h3>
-      <p className="text-sm text-gray-600 mb-6">
+      <p className="text-sm text-gray-600 mb-5">
         Fill out a few quick details and we'll get you started in no time.
       </p>
-      <form onSubmit={handleCreateSession} className="flex flex-col gap-4">
+      <form onSubmit={handleCreateSession} className="flex flex-col gap-3.5">
         <Input
           value={formData.role}
           onChange={({ target }) => handleChange("role", target.value)}
@@ -215,6 +213,7 @@ const CreateSessionForm = ({ onSuccess }) => {
           label="Years of Experience"
           placeholder="e.g 1, 2, 3"
           type="number"
+          min="0"
           required
         />
 
@@ -236,13 +235,13 @@ const CreateSessionForm = ({ onSuccess }) => {
         />
 
         {error && (
-          <p className="text-red-500 text-sm font-medium -mt-1">{error}</p>
+          <p className="text-red-600 text-xs font-semibold -mt-1">{error}</p>
         )}
 
         <button
           type="submit"
           disabled={isLoading}
-          className="mt-4 w-full py-2.5 rounded-xl bg-black text-white font-semibold text-sm hover:bg-gray-900 transition-all duration-200 disabled:opacity-50 flex items-center justify-center"
+          className="mt-4 w-full py-2 rounded-lg bg-gradient-to-r from-orange-500 to-yellow-400 text-white font-semibold text-sm hover:from-orange-600 hover:to-yellow-500 transition duration-300 disabled:opacity-60 flex items-center justify-center"
         >
           {isLoading ? <SpinnerLoader /> : "Create Session"}
         </button>

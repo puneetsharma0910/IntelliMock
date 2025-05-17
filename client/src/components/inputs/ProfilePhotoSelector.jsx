@@ -30,7 +30,7 @@ const ProfilePhotoSelector = ({image, setImage, preview, setPreview}) => {
     }
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center space-y-4">
             {/* Hidden file input */}
             <input 
                 type="file" 
@@ -41,7 +41,7 @@ const ProfilePhotoSelector = ({image, setImage, preview, setPreview}) => {
             />
             
             {/* Image preview or placeholder */}
-            <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 mb-3 relative">
+            <div className="w-28 h-28 rounded-full overflow-hidden bg-gray-50 border-2 border-gray-300 shadow-sm mb-1 relative">
                 {(previewUrl || preview) ? (
                     <img 
                         src={previewUrl || preview} 
@@ -49,20 +49,20 @@ const ProfilePhotoSelector = ({image, setImage, preview, setPreview}) => {
                         className="w-full h-full object-cover"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                        <LuUser size={40} className="text-gray-400" />
+                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                        <LuUser size={48} className="text-gray-400" />
                     </div>
                 )}
             </div>
             
             {/* Action buttons */}
-            <div className="flex gap-2">
+            <div className="flex gap-3">
                 <button 
                     type="button"
                     onClick={onChooseFile}
-                    className="flex items-center gap-1 bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm hover:bg-blue-100"
+                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-md hover:bg-blue-700 transition"
                 >
-                    <LuUpload size={16} />
+                    <LuUpload size={18} />
                     {(previewUrl || preview) ? 'Change' : 'Upload'}
                 </button>
                 
@@ -70,9 +70,9 @@ const ProfilePhotoSelector = ({image, setImage, preview, setPreview}) => {
                     <button 
                         type="button"
                         onClick={handleRemoveImage}
-                        className="flex items-center gap-1 bg-red-50 text-red-600 px-3 py-1 rounded-md text-sm hover:bg-red-100"
+                        className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-md hover:bg-red-700 transition"
                     >
-                        <LuTrash size={16} />
+                        <LuTrash size={18} />
                         Remove
                     </button>
                 )}

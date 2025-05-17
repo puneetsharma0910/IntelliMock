@@ -1,4 +1,4 @@
-/* Font Imports */
+/* Font Imports
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
 @import "tailwindcss";
@@ -96,4 +96,169 @@
 
 .btn-small {
   @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Font Imports */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Urbanist", sans-serif;
+  --breakpoint-3xl: 1920px;
+  --color-primary: #ff9324;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-display);
+  }
+  body {
+    background-color: #fcfbfc;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.4);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer utilities {
+  /* Text Shine Animation */
+  @keyframes text-shine {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+  .animate-text-shine {
+    animation: text-shine 2s linear infinite alternate;
+    background: linear-gradient(90deg, #ff9324, #ffe4b5, #ff9324);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  /* Blob Animations */
+  @keyframes blob1 {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -60px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, -30px) scale(0.9);
+    }
+  }
+  @keyframes blob2 {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(-40px, 60px) scale(1.05);
+    }
+    66% {
+      transform: translate(20px, -40px) scale(0.95);
+    }
+  }
+  @keyframes blob3 {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(20px, 1400px) scale(1.15);
+    }
+    66% {
+      transform: translate(-30px, -30px) scale(0.85);
+    }
+  }
+  .animate-blob1 {
+    animation: blob1 8s ease-in-out infinite;
+  }
+  .animate-blob2 {
+    animation: blob2 10s ease-in-out infinite;
+  }
+  .animate-blob3 {
+    animation: blob3 12s ease-in-out infinite;
+  }
+
+  /* Gradient Move Animation for Hero */
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-gradient-move {
+    background-size: 200% 200%;
+    animation: gradient-move 8s ease-in-out infinite;
+  }
+
+  /* Fade In Up Animation */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: none;}
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+
+  /* Glassmorphism Card Utility */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-amber-100/60 shadow-md;
+    box-shadow: 0 8px 32px 0 rgba(255,193,7,0.10);
+  }
+
+  /* CTA Glow Utility */
+  .cta-glow {
+    box-shadow: 0 0 24px 4px #ff9324a0;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .cta-glow:hover {
+    box-shadow: 0 0 48px 8px #ff9324cc;
+    transform: scale(1.04);
+  }
+}
+
+/* Input Box */
+.input-box {
+  @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 border border-gray-200 outline-none focus-within:border-orange-300;
+}
+
+/* Primary Button */
+.btn-primary {
+  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-black shadow-lg shadow-orange-600/5 p-[10px] rounded-md my-1 hover:bg-orange-600/15 hover:text-black cursor-pointer;
+}
+
+/* Small Button */
+.btn-small {
+  @apply flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300;
 }
