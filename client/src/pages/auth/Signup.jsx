@@ -104,7 +104,7 @@ const Signup = ({ setCurrentPage }) => {
       <h3 className="text-3xl font-extrabold text-amber-900 mb-2 text-center">
         Create an account
       </h3>
-      <p className="text-sm text-amber-700 mb-6 text-center">
+      <p className="text-sm text-amber-600 mb-6 text-center">
         Join IntelliMock to create your account
       </p>
       <form onSubmit={handleSignup} className="space-y-5">
