@@ -24,11 +24,27 @@ IntelliMock is a professional-grade platform designed to help you **crack Micros
 
 ---
 
+<<<<<<< HEAD
 ## 🏗️ Tech Stack
 
 - **Frontend**: React, Tailwind CSS, Vite, React Router, Axios, React Hot Toast, Framer Motion, React Markdown, Syntax Highlighting.
 - **Backend**: Node.js, Express, MongoDB (Mongoose), JWT, Multer (file upload), Google Gemini AI API.
 - **Dev Tools**: ESLint, Nodemon, dotenv.
+=======
+### Frontend
+- React.js with Javascript
+- Tailwind CSS for enterprise-grade UI
+- Redux Toolkit for state management
+- React Router for navigation
+- Jest and React Testing Library for testing
+- ESLint and Prettier for code quality
+
+### Backend
+- Node.js with Express.js
+- MongoDB 
+- JWT Authentication with refresh tokens
+- Google's Generative AI API
+>>>>>>> 6529428f94e4a1b316f7298c8a2c631a70c364b3
 
 ---
 
