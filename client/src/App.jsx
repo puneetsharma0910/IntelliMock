@@ -23,12 +23,12 @@ const App = () => {
             />
           </Routes>
 
-          <Toaster
+          <Toaster   
             position="top-right"
             toastOptions={{
               success: {
                 theme: {
-                  primary: "green",
+                            primary: "green",
                 },
               },
             }}
