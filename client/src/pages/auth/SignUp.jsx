@@ -136,7 +136,9 @@ const Signup = ({ setCurrentPage }) => {
           />
         </div>
         {error && (
-          <p className="text-red-600 text-sm font-medium text-center">{error}</p>
+          <p className="text-red-600 text-sm font-medium text-center">
+            {error}
+          </p>
         )}
         <button
           type="submit"
@@ -157,6 +159,7 @@ const Signup = ({ setCurrentPage }) => {
           Login
         </button>
       </p>
+      console.log("hi");
     </div>
   );
 };
