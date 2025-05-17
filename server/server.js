@@ -21,6 +21,13 @@ app.use(express.json());
 
 connectDB();
 //routes
+// ...existing code...
+
+app.get("/", (req, res) => {
+  res.send("IntelliMock backend is running!");
+});
+
+// ...existing code...
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
