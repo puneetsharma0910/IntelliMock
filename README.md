@@ -35,7 +35,7 @@ IntelliMock is a professional-grade interview preparation platform designed to h
 ## Tech Stack
 
 ### Frontend
-- React.js with TypeScript
+- React.js with Javascript
 - Tailwind CSS for enterprise-grade UI
 - Redux Toolkit for state management
 - React Router for navigation
@@ -44,12 +44,9 @@ IntelliMock is a professional-grade interview preparation platform designed to h
 
 ### Backend
 - Node.js with Express.js
-- MongoDB with Mongoose ODM
-- Redis for caching
+- MongoDB 
 - JWT Authentication with refresh tokens
 - Google's Generative AI API
-- AWS S3 for file storage
-- Docker for containerization
 
 ## Prerequisites
 
