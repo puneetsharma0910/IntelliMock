@@ -26,9 +26,9 @@ IntelliMock is a professional-grade platform designed to help you prepare for en
 
 ## 🏗️ Tech Stack
 
-- **Frontend**: React, Tailwind CSS, Vite, React Router, Axios, React Hot Toast, Framer Motion, React Markdown, Syntax Highlighting.
-- **Backend**: Node.js, Express, MongoDB (Mongoose), JWT, Multer (file upload), Google Gemini AI API.
-- **Dev Tools**: ESLint, Nodemon, dotenv.
+- **Frontend:** React, Vite, Tailwind CSS, React Router, Axios, React Hot Toast, Framer Motion, React Markdown, Syntax Highlighting.
+- **Backend:** Node.js, Express, MongoDB (Mongoose), JWT, Multer (file upload), Google Gemini AI API.
+- **Dev Tools:** ESLint, Nodemon, dotenv.
 
 ---
 
@@ -39,10 +39,9 @@ IntelliMock/
 │
 ├── client/                # React frontend
 │   ├── src/
-│   │   ├── components/    # UI components (cards, loaders, layouts, inputs)
+│   │   ├── components/    # UI components
 │   │   ├── contexts/      # React context (UserContext)
 │   │   ├── pages/         # Page-level components (Landing, Auth, Dashboard, InterviewPrep)
-│   │   │   ├── utils/     # API paths, helpers, axios instance, data
 │   │   └── main.jsx       # App entry point
 │   ├── public/            # Static assets
 │   └── vite.config.js     # Vite config
@@ -63,18 +62,34 @@ IntelliMock/
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ Deployment
 
-### Prerequisites
+### **Frontend (React)**
+- Deployed on [Vercel](https://vercel.com/)
+- Set environment variable in `client/.env`:
+  ```
+  VITE_API_BASE_URL=https://<your-backend-app>.onrender.com
+  ```
+- Build command: `npm run build`
+- Output directory: `dist`
 
-- **Node.js** (v16+)
-- **MongoDB Atlas** (or local MongoDB)
-- **Google Gemini API Key** ([Get one here](https://ai.google.dev/))
+### **Backend (Express)**
+- Deployed on [Render](https://render.com/)
+- Set environment variables in Render dashboard:
+  - `PORT`
+  - `MONGO_URI`
+  - `JWT_SECRET`
+  - `GEMINI_API_KEY`
+- Start command: `npm start`
+
+---
+
+## 🏃‍♂️ Getting Started Locally
 
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/intellimock.git
+git clone https://github.com/puneetsharma0910/intellimock.git
 cd intellimock
 ```
 
@@ -101,56 +116,33 @@ JWT_SECRET=your_jwt_secret
 GEMINI_API_KEY=your_google_gemini_api_key
 ```
 
-> **Note:** Never commit your `.env` file to version control.
+Create `client/.env`:
 
----
+```
+VITE_API_BASE_URL=http://localhost:8000
+```
 
-## 🏃‍♂️ Running the Application
-
-### 1. Start the Backend
+### 4. Run the Application
 
 ```sh
+# Start backend
 cd server
-npm run dev
-# or
 npm start
-```
 
-### 2. Start the Frontend
-
-```sh
-cd client
+# Start frontend
+cd ../client
 npm run dev
 ```
-
-- **Frontend:** http://localhost:5173 (default Vite port)
-- **Backend API:** http://localhost:8000
 
 ---
 
 ## 🧑‍💻 Usage Guide
 
-### 1. Register & Login
-
-- Sign up with your name, email, password, and (optionally) a profile image.
-- Log in to access your dashboard.
-
-### 2. Create a New Interview Session
-
-- Click **Add New** on the dashboard.
-- Enter your target role (e.g., "Software Engineer"), years of experience, and topics to focus on (e.g., "DSA, System Design, OOP").
-- The AI will generate 10 tailored questions and answers.
-
-### 3. Practice & Learn
-
-- Expand questions to view detailed answers (with code).
-- Pin important questions or add notes.
-- Click **Learn More** for instant AI-powered concept explanations.
-
-### 4. Manage Sessions
-
-- View all your sessions on the dashboard.
-- Delete sessions you no longer need.
+- Register & login to your account.
+- Create a new interview session with your target role, experience, and topics.
+- Practice with AI-generated questions and answers.
+- Pin questions, add notes, and use the "Learn More" feature for instant explanations.
+- Manage your sessions and track your progress.
 
 ---
 
@@ -165,7 +157,7 @@ npm run dev
 ## 🧠 AI Integration
 
 - Uses [Google Gemini](https://ai.google.dev/) for generating questions and explanations.
-- Prompts are carefully crafted for clean, JSON-formatted responses.
+- Prompts are crafted for clean, JSON-formatted responses.
 
 ---
 
@@ -220,4 +212,4 @@ npm run dev
 
 ---
 
-**Use IntelliMock to simulate real technical interviews, strengthen your fundamentals, and track your progress as you prepare for your dream software engineering role!**
+**Use IntelliMock to simulate technical interviews, strengthen your fundamentals, and track your progress as you prepare for your dream software engineering role!**
