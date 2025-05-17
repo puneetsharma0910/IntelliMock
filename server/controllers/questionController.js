@@ -5,37 +5,81 @@ const Session = require("../models/Session");
 // @route POST /api/questions/add
 // @access Private
 
+// exports.addQuestionsToSession = async (req, res) => {
+//     try{
+//         const {sessionId, questions} = req.body;
+//         if(!sessionId || !questions || !Array.isArray(questions)) {
+//             return res.status(400).json({message: "Invalid inout data"});
+//         }
+//         const session = await Session.findById(sessionId);
+//         if(!session) {
+//             return res.status(404).json({message: "Session not found"});
+            
+//         }
+//         //create new questions
+//         const createdQuestions = await Question.insertMany(questions.map((q)=>({
+//             question: q.question,
+//             answer: q.answer,
+//             session: sessionId,
+
+//         })));
+//         //update session with new questions
+//         session.questions.push(...createdQuestions.map((q)=>q._id));
+//         await session.save();
+//           //update session with new questions
+//         session.questions.push(...createdQuestions.map((q)=>q._id));
+//         await session.save();
+
+//         // Fetch updated session with populated questions
+//         const updatedSession = await Session.findById(sessionId).populate({
+//             path: "questions",
+//             options: { sort: { isPinned: -1, createdAt: 1 } }
+//         });
+
+//         res.status(201).json({ session: updatedSession });
+// // ...existing code...
+//         res.status(201).json(createdQuestions);
+        
+//     }
+//     catch(error) {
+//         console.error("Error adding questions to session:", error);
+//         return res.status(500).json({message: "Internal server error"});
+//     }
+   
+// }
+
 exports.addQuestionsToSession = async (req, res) => {
-    try{
-        const {sessionId, questions} = req.body;
-        if(!sessionId || !questions || !Array.isArray(questions)) {
-            return res.status(400).json({message: "Invalid inout data"});
+    try {
+        const { sessionId, questions } = req.body;
+        if (!sessionId || !questions || !Array.isArray(questions)) {
+            return res.status(400).json({ message: "Invalid input data" });
         }
         const session = await Session.findById(sessionId);
-        if(!session) {
-            return res.status(404).json({message: "Session not found"});
-            
+        if (!session) {
+            return res.status(404).json({ message: "Session not found" });
         }
-        //create new questions
-        const createdQuestions = await Question.insertMany(questions.map((q)=>({
+        // create new questions
+        const createdQuestions = await Question.insertMany(questions.map((q) => ({
             question: q.question,
             answer: q.answer,
             session: sessionId,
-
         })));
-        //update session with new questions
-        session.questions.push(...createdQuestions.map((q)=>q._id));
+        // update session with new questions (only once)
+        session.questions.push(...createdQuestions.map((q) => q._id));
         await session.save();
-        res.status(201).json(createdQuestions);
-        
-    }
-    catch(error) {
-        console.error("Error adding questions to session:", error);
-        return res.status(500).json({message: "Internal server error"});
-    }
-   
-}
 
+        // Fetch updated session with populated questions
+        const updatedSession = await Session.findById(sessionId).populate({
+            path: "questions",
+            options: { sort: { isPinned: -1, createdAt: 1 } }
+        });
+
+        return res.status(201).json({ session: updatedSession });
+    } catch (error) {
+        console.error("Error adding questions to session:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
 // @desc Toggle pin question
 // @route POST /api/questions/:id/pin
 // @access Private
