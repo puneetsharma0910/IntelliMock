@@ -92,7 +92,7 @@ const Signup = ({ setCurrentPage }) => {
           "No response from server. Please check your internet connection."
         );
       } else {
-        setError("Failed to connect to the server. Please try again later.");
+        setError("Failed to  connect to the server. Please try again later.");
       }
     } finally {
       setIsLoading(false);
