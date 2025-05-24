@@ -1,6 +1,10 @@
 # IntelliMock – AI-Powered Technical Interview Preparation Platform
 
+<<<<<<< HEAD
 IntelliMock is a modern, full-stack web application designed to help software engineers prepare for technical interviews. It leverages advanced AI to generate tailored interview questions, detailed answers, and concept explanations, all within a beautiful, responsive UI.
+=======
+
+>>>>>>> b7be7a1f14d3c635db228abf104bc88266fe1d12
 
 ---
 
