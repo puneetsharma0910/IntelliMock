@@ -1,6 +1,6 @@
 # IntelliMock – AI-Powered Technical Interview Preparation Platform
 
-IntelliMock is a professional-grade platform designed to help you prepare for entry-level software engineering interviews at top tech companies. It leverages AI to generate technical interview questions, detailed answers, and concept explanations, simulating real interview scenarios with analytics and session management.
+
 
 ---
 
