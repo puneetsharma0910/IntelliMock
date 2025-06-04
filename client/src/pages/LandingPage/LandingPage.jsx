@@ -18,11 +18,8 @@ const LandingPage = () => {
   const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {
-    if (user) {
-      setOpenAuthModal(true);
-    } else {
-      navigate("/login");
-    }
+    // Remove the user check and navigation
+    setOpenAuthModal(true);
   };
  return (
     <>
