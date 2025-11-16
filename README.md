@@ -26,15 +26,21 @@ IntelliMock is a modern, full-stack web application designed to help software en
 
 ## 📸 Screenshots & Demo
 
-<!--
-Add screenshots of your application below.
-Example:
-![Dashboard Screenshot](screenshots/dashboard.png)
+### Landing Page
+![Landing Page](screenshots/LandingPage.png)
 
-Add a link or embed a screen recording/gif demo below.
-Example:
-[Watch Demo](https://your-demo-link.com)
--->
+### Login Page
+![Auth Modal](screenshots/LoginPage.png)
+
+### Signup Page
+![SignupPage](screenshots/SignupPage.png)
+
+### Dashboard
+![Dashboard Page](screenshots/Dashboard.png)
+
+### Session Page
+![Session Page](screenshots/SessionPage.png)
+
 
 ---
 
