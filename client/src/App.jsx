@@ -7,6 +7,8 @@ import Signup from "./pages/auth/Signup";
 import Dashboard from "./pages/Home/Dashboard";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 import UserProvider from "./contexts/UserContext";
+import { Analytics } from "@vercel/analytics/react"
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -33,6 +35,7 @@ const App = () => {
               },
             }}
           />
+          <Analytics/>
         </div>
       </UserProvider>
     </BrowserRouter>
